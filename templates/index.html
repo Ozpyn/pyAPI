@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+</head>
+
+<body>
+    <h1>API Documentation</h1>
+    <p>This is a simple API documentation for the Vehicle API.</p>
+
+    <h2>Endpoints</h2>
+
+    <h3>1. Get all vehicles</h3>
+    <p><strong>GET</strong> /api/getAllVehicles</p>
+    <p>Retrieves information about all vehicles.</p>
+
+    <h3>2. Get vehicle by VIN</h3>
+    <p><strong>GET</strong> /api/getVehicle/&lt;vin&gt;</p>
+    <p>Retrieves information about a vehicle based on its VIN.</p>
+
+    <h3>3. Get vehicle features by VIN</h3>
+    <p><strong>GET</strong> /api/getVehicleFeatures/&lt;vin&gt;</p>
+    <p>Retrieves features of a vehicle based on its VIN.</p>
+
+    <h3>4. Get vehicle photos by VIN</h3>
+    <p><strong>GET</strong> /api/getVehiclePhotos/&lt;vin&gt;</p>
+    <p>Retrieves photos of a vehicle based on its VIN.</p>
+
+    <h3>5. Delete vehicle by VIN</h3>
+    <p><strong>GET</strong> /api/deleteVehicle/&lt;vin&gt;</p>
+    <p>Deletes a vehicle from the database based on its VIN.</p>
+
+    <h3>6. Create new vehicle</h3>
+    <p><strong>POST</strong> /api/newVehicle</p>
+    <p>Creates a new vehicle entry in the database. Requires JSON payload with the following fields: vin, year, color,
+        mileage, make, model, type, mpg-city, mpg-hwy, msrp, photos (optional), features (optional).</p>
+
+    <h3>7. Create new order</h3>
+    <p><strong>POST</strong> /api/newOrder</p>
+    <p>Creates a new order in the database. Requires JSON payload with the following fields: vin, customer_id,
+        street_name, street_number, apartment_number, city, state, zip.</p>
+
+    <h2>Example Usage</h2>
+    <p>Assuming the API is hosted on <strong>http://174.104.199.92:5004</strong>:</p>
+    <pre>
+        <code>
+            // Get all vehicles
+            GET http://174.104.199.92:5004/api/getAllVehicles
+
+            // Get vehicle by VIN
+            GET http://174.104.199.92:5004/api/getVehicle/ABC123
+
+            // Get vehicle features by VIN
+            GET http://174.104.199.92:5004/api/getVehicleFeatures/ABC123
+
+            // Get vehicle photos by VIN
+            GET http://174.104.199.92:5004/api/getVehiclePhotos/ABC123
+
+            // Delete vehicle by VIN
+            GET http://174.104.199.92:5004/api/deleteVehicle/ABC123
+
+            // Create new vehicle
+            POST http://174.104.199.92:5004/api/newVehicle
+            {
+                "vin": "ABC123",
+                "year": 2022,
+                "color": "Blue",
+                "mileage": 15000,
+                "make": "Toyota",
+                "model": "Camry",
+                "type": "Sedan",
+                "mpg-city": 25,
+                "mpg-hwy": 35,
+                "msrp": 25000,
+                "photos": ["photo1.jpg", "photo2.jpg"],
+                "features": ["Feature 1", "Feature 2"]
+            }
+
+            // Create new order
+            POST http://174.104.199.92:5004/api/newOrder
+            {
+                "vin": "ABC123",
+                "customer_id": 1,
+                "street_name": "Cedar Bark Drive",
+                "street_number": 675,
+                "apartment_number": 1,
+                "city": "Aurora",
+                "state": "Ohio",
+                "zip": 44202
+            }
+        </code>
+    </pre>
+</body>
+
+</html>

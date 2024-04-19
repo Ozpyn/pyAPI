@@ -1,0 +1,742 @@
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://192.168.50.138:5004
+Press CTRL+C to quit
+131.123.48.70 - - [15/Apr/2024 13:00:32] "GET / HTTP/1.1" 200 -
+131.123.49.212 - - [16/Apr/2024 16:06:16] "GET / HTTP/1.1" 200 -
+131.123.49.212 - - [16/Apr/2024 16:06:17] "GET /favicon.ico HTTP/1.1" 404 -
+173.90.24.50 - - [16/Apr/2024 23:49:07] code 400, message Bad request version ('\x00\x02\x01\x00\x00+\x00\x07\x06::\x03\x04\x03\x03\x00')
+173.90.24.50 - - [16/Apr/2024 23:49:07] "\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03åe\x84Å$\x99\x09½Î¬\x833XÉ\x9a³ñnMóX¥ræ\x8d\x0d\x7fAÌTp» ll²¸{0\x9cP~\x96\x11ÎXC\x18\x1d\x96Z\x02µ÷\x80nd¢×B\x15öË\x93ö\x00 êê\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x01\x93**\x00\x00\x00\x0b\x00\x02\x01\x00\x00+\x00\x07\x06::\x03\x04\x03\x03\x00" HTTPStatus.BAD_REQUEST -
+173.90.24.50 - - [16/Apr/2024 23:49:07] code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00')
+173.90.24.50 - - [16/Apr/2024 23:49:07] "\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03nû[\x91\x9c{sîw\x95Ü¿J¨Ê\x8c\x83 \x8dýB\x03\x06ºçëÃ\x1d¾\x82co ®¢_ä\x84,\x1bñ¦çÈs;ò'\x8e¦\x94l\x8e©%¬\x8c°KPµ=\x08+=\x00 êê\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x01\x93\x8a\x8a\x00\x00\x003\x00+\x00)úú\x00\x01\x00\x00\x1d\x00 \x8dÈÿáNÏ\x80áA Öº¾Wå?)yLGî\x8e àÍ.Ð\x8c{:¢!\x00\x17\x00\x00ÿ\x01\x00\x01\x00\x00\x12\x00\x00þ\x0d\x00Ú\x00\x00\x01\x00\x01É\x00 ø\x1d\x8cµ\x81T/rÜ\x1bE\x1e`±|\x8e\x8aÃ\x0b\x16oy×¢\x93[È \x96Àuy\x00°6\x91;Vñð],ã÷peÈ~½9ñÑÓ¡ÊZ\x9a¸\x88Ü\x1bÿ\x0b0c¤Ã\x0dG½3{Y\x199\x11!¦å\x92q)@¹³è?\x0b¶@Lã¤\x85\x1c¤«UxÄpô¬§Ñ\x8e)³Ë+f|ä\x13P°\x01=GØ>¢ù¼1½¼`\x1aY'ü±ãF¦>u\x0c+É%mEao\x8dB\x7fCKÒ6PníO\x94/4\x14\x0bà8Ë^£±©±è\x85-\x0c¿_j¸:\x05Ê­\x19Óu,Áç \x15\x16J[u\x06©Õ\x92\x96¿n+3^ÂÝ\x16_Æô\x00\x0d\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00" HTTPStatus.BAD_REQUEST -
+173.90.24.50 - - [16/Apr/2024 23:49:07] "GET / HTTP/1.1" 200 -
+173.90.24.50 - - [16/Apr/2024 23:49:07] "GET /favicon.ico HTTP/1.1" 404 -
+64.246.133.6 - - [16/Apr/2024 23:49:08] "GET / HTTP/1.1" 200 -
+167.206.252.71 - - [16/Apr/2024 23:49:08] "GET / HTTP/1.1" 200 -
+23.228.131.199 - - [16/Apr/2024 23:49:09] code 400, message Bad request version ('À\x13À')
+23.228.131.199 - - [16/Apr/2024 23:49:09] "\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03<Å6CeqÂN\x94\x8eIOx½\x02§!e1\x93înR\x94\x10\x86t³ýs.\x8e oQÝ\x9dgN¿\x97ÈQßS  ¬ÃÏ¡ù{\x8aP.\x13B%Rdþ)jx\x00&êê\x13\x01\x13\x02\x13\x03À+À/Ì©Ì¨À,À0À\x09À\x13À" HTTPStatus.BAD_REQUEST -
+173.90.24.50 - - [16/Apr/2024 23:54:46] "GET /api/getVehicle/undefined HTTP/1.1" 404 -
+173.90.24.50 - - [16/Apr/2024 23:54:52] "GET /api/getVehicle/undefined HTTP/1.1" 404 -
+173.90.24.50 - - [16/Apr/2024 23:55:05] "GET /api/getVehicle/undefined HTTP/1.1" 404 -
+173.90.24.50 - - [16/Apr/2024 23:57:24] "GET /api/getVehicle/undefined HTTP/1.1" 404 -
+173.90.24.50 - - [16/Apr/2024 23:57:32] "GET /api/getVehicle/undefined HTTP/1.1" 404 -
+173.90.24.50 - - [17/Apr/2024 00:08:50] "OPTIONS /api/newVehicle HTTP/1.1" 200 -
+173.90.24.50 - - [17/Apr/2024 00:10:25] "OPTIONS /api/newVehicle HTTP/1.1" 200 -
+173.90.24.50 - - [17/Apr/2024 00:14:55] "OPTIONS /api/newVehicle HTTP/1.1" 200 -
+173.90.24.50 - - [17/Apr/2024 00:14:55] "OPTIONS /api/newVehicle HTTP/1.1" 200 -
+173.90.24.50 - - [17/Apr/2024 00:14:55] "OPTIONS /api/newVehicle HTTP/1.1" 200 -
+173.90.24.50 - - [17/Apr/2024 00:16:39] "OPTIONS /api/newVehicle HTTP/1.1" 200 -
+173.90.24.50 - - [17/Apr/2024 00:26:02] "OPTIONS /api/newVehicle HTTP/1.1" 200 -
+173.90.24.50 - - [17/Apr/2024 00:26:02] "OPTIONS /api/newVehicle HTTP/1.1" 200 -
+173.90.24.50 - - [17/Apr/2024 00:27:37] "OPTIONS /api/newVehicle HTTP/1.1" 200 -
+173.90.24.50 - - [17/Apr/2024 00:28:45] "OPTIONS /api/newVehicle HTTP/1.1" 200 -
+173.90.24.50 - - [17/Apr/2024 00:28:49] "OPTIONS /api/newVehicle HTTP/1.1" 200 -
+173.90.24.50 - - [17/Apr/2024 00:28:51] "OPTIONS /api/newVehicle HTTP/1.1" 200 -
+173.90.24.50 - - [17/Apr/2024 00:28:51] "OPTIONS /api/newVehicle HTTP/1.1" 200 -
+173.90.24.50 - - [17/Apr/2024 00:28:52] "OPTIONS /api/newVehicle HTTP/1.1" 200 -
+173.90.24.50 - - [17/Apr/2024 00:28:59] "OPTIONS /api/newVehicle HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:01] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:02] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:02] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:04] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:04] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:05] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:05] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:06] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:06] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:06] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:06] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:06] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:06] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:06] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:06] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:06] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:07] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:07] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:07] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:07] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:15] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:15] "GET /favicon.ico HTTP/1.1" 404 -
+192.168.50.1 - - [17/Apr/2024 19:11:45] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:45] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:46] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:11:46] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:12:04] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:12:04] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:12:09] "GET /api/getAllVehicles HTTP/1.1" 200 -
+192.168.50.1 - - [17/Apr/2024 19:12:09] "GET /api/getAllVehicles HTTP/1.1" 200 -
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://192.168.50.138:5004
+Press CTRL+C to quit
+131.123.48.80 - - [19/Apr/2024 16:19:17] "GET / HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 16:19:18] "GET /favicon.ico HTTP/1.1" 404 -
+131.123.48.80 - - [19/Apr/2024 16:20:15] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 16:20:15] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 16:21:53] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 16:21:53] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 16:22:04] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 16:22:04] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 17:02:34] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 17:02:34] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:04:14] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:04:14] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 17:06:29] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 17:06:29] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:12:52] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:12:52] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:20:01] "GET /favicon.ico HTTP/1.1" 404 -
+131.123.48.80 - - [19/Apr/2024 17:23:32] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:23:32] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:23:40] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:23:40] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:37:26] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:39:28] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:39:36] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:39:37] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:40:07] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:40:19] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:41:28] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:41:31] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:41:31] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:41:48] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:41:48] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:46:48] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:46:49] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:46:49] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:46:50] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:46:51] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:46:51] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:46:56] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:46:56] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:46:56] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:46:56] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:46:56] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:46:56] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:48:53] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:48:53] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:48:53] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:48:55] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:48:55] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:48:55] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:48:55] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:48:55] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:48:55] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:49:52] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:49:52] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:49:52] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:51:05] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:51:47] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:51:47] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:51:48] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:51:58] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:51:58] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:51:58] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:51:58] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:51:58] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:51:58] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:52:03] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:52:03] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:52:03] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:52:20] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:52:20] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:52:20] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:53:09] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:53:09] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:53:09] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:53:09] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:53:09] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:53:09] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:54:02] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:54:02] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:54:03] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:55:03] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:55:03] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:55:03] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:55:03] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:55:03] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:55:04] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:55:15] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:55:15] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:55:15] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:55:15] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:55:15] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:55:15] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:55:31] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:55:31] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:55:31] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:55:31] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:55:31] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:55:31] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:58:23] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:58:23] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:58:23] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:58:33] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:58:33] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:58:33] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:58:33] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:58:33] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:58:34] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 17:59:46] "GET /api/getFeatures/ABC123 HTTP/1.1" 404 -
+131.123.48.80 - - [19/Apr/2024 18:00:08] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:00:08] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:00:08] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:00:08] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:00:08] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:00:08] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:00:14] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:00:14] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:00:14] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:00:14] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:00:14] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:00:14] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:00:36] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:01:14] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:01:14] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:01:15] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:04:36] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:04:41] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:04:41] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:04:41] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:04:41] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:04:41] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:04:42] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:05:18] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:05:18] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:05:18] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:05:18] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:05:18] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:05:18] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:05:25] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:05:25] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:05:25] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:05:26] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:05:26] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:05:26] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:05:29] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:05:29] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:05:29] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:05:29] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:05:29] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:05:29] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:06:40] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:06:40] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:06:41] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:06:58] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:06:58] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:06:58] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:06:59] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:06:59] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:06:59] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:10:47] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:10:47] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:10:47] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:10:47] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:10:47] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:10:47] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:10:47] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:10:47] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 18:14:18] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:15:49] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:15:49] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:16:28] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:16:29] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:18:51] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:18:52] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:03] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:03] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:03] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:03] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:03] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:03] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:03] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:03] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:10] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:13] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:13] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:13] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:13] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:13] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:13] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:13] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:14] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:17] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:17] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:17] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:17] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:17] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:17] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:17] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:22:17] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:34:42] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:34:42] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:34:42] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:34:42] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:34:42] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:34:43] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:34:43] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 18:34:43] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:44:47] "GET /api/getAllVehicles HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:44:47] "GET /api/getAllVehicles HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:44:47] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:44:47] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:44:47] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:44:47] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:44:47] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:44:47] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:45:25] "GET /api/getAllVehicles HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:45:25] "GET /api/getAllVehicles HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:45:25] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:45:25] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:45:25] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:45:25] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:45:25] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:45:25] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:46:55] "GET /api/getAllVehicles HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:46:55] "GET /api/getAllVehicles HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:46:55] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:46:55] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:46:55] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:46:55] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:46:55] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:46:55] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:47:48] "GET /api/getAllVehicles HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:47:48] "GET /api/getAllVehicles HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:47:48] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:47:48] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:47:48] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:47:48] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:47:48] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:47:48] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:34] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:34] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:34] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:36] "GET /api/getAllVehicles HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:36] "GET /api/getAllVehicles HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:36] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:36] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:36] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:36] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:36] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:36] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:40] "GET /api/getAllVehicles HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:40] "GET /api/getAllVehicles HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:40] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:40] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:40] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:40] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:40] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:40] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:44] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:44] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:48:44] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:10] "GET /api/getAllVehicles HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:10] "GET /api/getAllVehicles HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:10] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:10] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:10] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:10] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:10] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:10] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:16] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:16] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:16] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:17] "GET /api/getAllVehicles HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:17] "GET /api/getAllVehicles HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:17] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:17] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:17] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:17] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:17] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:17] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:21] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:21] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:50:21] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:51:12] "GET /api/getAllVehicles HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:51:12] "GET /api/getAllVehicles HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:51:12] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:51:12] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:51:12] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:51:12] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:51:12] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+173.90.24.50 - - [19/Apr/2024 18:51:12] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+  File "/home/ozpyn/pyAPI/api.py", line 229
+    else:
+SyntaxError: expected 'except' or 'finally' block
+  File "/home/ozpyn/pyAPI/api.py", line 229
+    else:
+SyntaxError: expected 'except' or 'finally' block
+Traceback (most recent call last):
+  File "/home/ozpyn/pyAPI/api.py", line 197, in <module>
+    def createVehicle():
+  File "/home/ozpyn/.local/lib/python3.10/site-packages/flask/sansio/scaffold.py", line 362, in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+  File "/home/ozpyn/.local/lib/python3.10/site-packages/flask/sansio/scaffold.py", line 47, in wrapper_func
+    return f(self, *args, **kwargs)
+  File "/home/ozpyn/.local/lib/python3.10/site-packages/flask/sansio/app.py", line 657, in add_url_rule
+    raise AssertionError(
+AssertionError: View function mapping is overwriting an existing endpoint function: createVehicle
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://192.168.50.138:5004
+Press CTRL+C to quit
+131.123.48.80 - - [19/Apr/2024 19:08:25] "GET / HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:08:42] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:08:47] "POST /api/newOrder HTTP/1.1" 500 -
+Error: unsupported operand type(s) for &: 'dict' and 'dict'
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://192.168.50.138:5004
+Press CTRL+C to quit
+131.123.48.80 - - [19/Apr/2024 19:09:31] "POST /api/newOrder HTTP/1.1" 500 -
+76.190.196.100 - - [19/Apr/2024 19:13:03] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:13:03] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:13:03] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:13:03] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:13:03] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:13:03] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:13:03] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:13:04] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:13:06] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:13:07] "GET /api/getAllVehicles HTTP/1.1" 200 -
+Error: name 'console' is not defined
+  File "/home/ozpyn/pyAPI/api.py", line 235
+    else:
+IndentationError: expected an indented block after 'finally' statement on line 233
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://192.168.50.138:5004
+Press CTRL+C to quit
+131.123.48.80 - - [19/Apr/2024 19:14:38] "POST /api/newOrder HTTP/1.1" 500 -
+Error: name 'console' is not defined
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://192.168.50.138:5004
+Press CTRL+C to quit
+131.123.48.80 - - [19/Apr/2024 19:15:18] "POST /api/newOrder HTTP/1.1" 500 -
+{'vin': 'ABC123', 'customer_id': 1, 'street_name': 'Cedar Bark Drive', 'street_number': 675, 'apartment_number': 1, 'city': 'Aurora', 'state': 'Ohio', 'zip': 44202}
+Error: unsupported operand type(s) for &: 'dict' and 'dict'
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://192.168.50.138:5004
+Press CTRL+C to quit
+131.123.48.80 - - [19/Apr/2024 19:18:47] "POST /api/newOrder HTTP/1.1" 200 -
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://192.168.50.138:5004
+Press CTRL+C to quit
+131.123.48.80 - - [19/Apr/2024 19:20:38] "GET / HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:21:29] "GET / HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:21:29] "GET /favicon.ico HTTP/1.1" 404 -
+76.190.196.100 - - [19/Apr/2024 19:24:58] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:24:58] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:24:58] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:24:58] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:24:58] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:24:58] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://192.168.50.138:5004
+Press CTRL+C to quit
+131.123.48.80 - - [19/Apr/2024 19:35:43] "POST /api/newCustomer HTTP/1.1" 500 -
+76.190.196.100 - - [19/Apr/2024 19:40:34] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:40:34] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:40:34] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:40:34] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:40:34] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:40:34] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:49] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:49] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:49] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:49] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:49] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:49] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:49] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:49] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:51] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:51] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:51] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:51] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:51] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:51] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:51] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:51] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:52] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:52] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:52] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:53] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:53] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:53] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:53] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:53] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:54] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:54] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:54] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:54] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:54] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:54] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:54] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:55] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:55] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:55] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:55] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:55] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:55] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:55] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:55] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:42:56] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:43:07] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:43:07] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:43:07] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:43:07] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:43:07] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:43:07] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:43:07] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:43:07] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:43:55] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:43:55] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:43:55] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:43:55] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:43:55] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:43:55] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:44:13] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:44:13] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:44:13] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:22] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:22] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:22] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:22] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:22] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:23] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:23] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:23] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:28] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:29] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:29] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:29] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:29] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:29] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:29] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:29] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:44:42] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:44:42] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:44:42] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:55] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:55] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:55] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:55] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:55] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:55] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:55] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:44:55] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:45:00] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:45:00] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:45:00] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:45:23] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:45:24] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:45:24] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:45:24] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:45:24] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:45:24] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:45:24] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:45:24] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:45:25] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:45:26] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:45:26] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:45:26] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:45:26] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:45:26] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:45:26] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:45:26] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:45:38] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:45:38] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:45:38] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:46:11] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:46:11] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:46:11] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:46:39] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:46:39] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:46:39] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:47:41] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:47:41] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:47:41] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:47:56] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:47:56] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:47:56] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:48:21] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:48:21] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:48:21] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:48:21] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:48:21] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:48:22] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:48:22] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 19:48:22] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:48:51] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:48:52] "GET /api/getAllVehicles HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:48:52] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:48:52] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:48:52] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:48:52] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:48:52] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 19:48:52] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 20:02:55] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 20:02:55] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 20:02:55] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 20:02:55] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 20:02:55] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+131.123.48.80 - - [19/Apr/2024 20:02:55] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:05:16] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:05:16] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:05:16] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:05:16] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:05:16] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:05:16] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:05:20] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:05:20] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:05:21] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:05:21] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:05:21] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:05:21] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:08:10] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:08:10] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:08:10] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:08:10] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:08:10] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:08:10] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:08:10] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:08:10] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:09:43] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:09:44] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:09:44] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:09:44] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:09:44] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:09:44] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:10:03] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:10:03] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:10:03] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:11:04] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:11:04] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:11:04] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:12:22] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:12:22] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:12:22] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:13:02] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:13:03] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:13:03] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:13:49] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:13:49] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:13:50] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:17:08] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:17:08] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:17:08] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:17:08] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:17:08] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:17:09] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:18:08] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:18:08] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:18:08] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:18:08] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:18:08] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:18:08] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:19:59] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:19:59] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:19:59] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:27:53] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:27:53] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:27:53] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:28:20] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:28:20] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:28:20] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:28:27] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:28:27] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:28:27] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:28:47] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:28:47] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:28:47] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:29:55] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:29:55] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:29:55] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:30:46] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:30:46] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:30:46] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:30:46] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:30:46] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:30:46] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:30:54] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:30:54] "GET /api/getAllVehicles HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:30:54] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:30:54] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:30:54] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:30:54] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:30:54] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:30:54] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:31:05] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:31:05] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:31:05] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:31:05] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:31:05] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:31:05] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+52.20.138.30 - - [19/Apr/2024 20:31:50] "GET / HTTP/1.1" 200 -
+52.20.138.30 - - [19/Apr/2024 20:31:50] "GET /favicon.ico HTTP/1.1" 404 -
+76.190.196.100 - - [19/Apr/2024 20:32:01] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:32:02] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:32:02] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+52.20.138.30 - - [19/Apr/2024 20:32:21] "GET /api/getallvehicles HTTP/1.1" 404 -
+52.20.138.30 - - [19/Apr/2024 20:32:38] "GET /api/GetAllVehicles HTTP/1.1" 404 -
+76.190.196.100 - - [19/Apr/2024 20:35:05] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:35:05] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:35:05] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:35:22] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:35:22] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:35:22] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:35:36] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:35:36] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:35:36] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:37:15] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:37:15] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:37:15] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:37:15] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:37:15] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:37:15] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:39:59] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:39:59] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:39:59] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:40:04] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:40:04] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:40:04] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:40:25] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:40:25] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:40:25] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:40:25] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:40:25] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:40:25] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:40:33] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:40:33] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:40:33] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:40:33] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:40:33] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:40:33] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:44:41] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:44:41] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:44:41] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:46:05] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:46:05] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:46:05] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:46:11] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:46:12] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:46:12] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:46:51] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:46:51] "GET /api/getVehicle/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:46:51] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:46:51] "GET /api/getVehicleFeatures/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:46:51] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
+76.190.196.100 - - [19/Apr/2024 20:46:51] "GET /api/getVehiclePhotos/ABC123 HTTP/1.1" 200 -
