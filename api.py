@@ -159,6 +159,48 @@ def createOrder():
         if connection:
             connection.close()
 
+@app.route('/api/newOwner', methods=['POST'])
+def createOwner():
+    connection = None
+    try:
+        data = request.json
+        vehicle_vin = data["vin"]
+        customer_id = data["customer_id"]
+
+        connection = pymysql.connect(
+            host=app.config['MYSQL_HOST'],
+            user=app.config['MYSQL_DATABASE_USER'],
+            password=app.config['MYSQL_PASSWORD'],
+            db=app.config['MYSQL_DB'],
+            cursorclass=pymysql.cursors.DictCursor
+        )
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM customer WHERE id = %s;", (customer_id,))
+            customerExists = cursor.fetchone()
+            cursor.execute("SELECT * FROM vehicle WHERE vin = %s;", (vehicle_vin,))
+            vehicleExists = cursor.fetchone()
+            
+            if customerExists and vehicleExists:
+                try:
+                    cursor.execute("INSERT INTO `ownership` VALUES (%s, %s);", (customer_id, vehicle_vin))
+                except Exception as e:
+                    print("Error:", e)
+                    return jsonify({'error': 'Internal Server Error'}), 500
+
+            else:
+                return jsonify({'error': 'Vehicle or Customer not found'}), 404
+            
+        connection.commit()
+        return jsonify({'success': 'Order made successfully'}), 200
+    
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({'error': 'Internal Server Error'}), 500
+    
+    finally:
+        if connection:
+            connection.close()
+
 #Read
 
 @app.route('/api/getAllVehicles')
@@ -364,6 +406,57 @@ def getOrders():
             for row in rows:
                 row['date'] = str(row['date'])
                 row['time'] = str(row['time'])
+            resp = jsonify(rows)
+            resp.status_code = 200
+            return resp
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({'error': 'Internal Server Error'}), 500
+    finally:
+        if connection:
+            connection.close()
+
+@app.route('/api/getAllOwnership')
+def getAllOwnership():
+    connection = None
+    try:
+        connection = pymysql.connect(
+            host=app.config['MYSQL_HOST'],
+            user=app.config['MYSQL_DATABASE_USER'],
+            password=app.config['MYSQL_PASSWORD'],
+            db=app.config['MYSQL_DB'],
+            cursorclass=pymysql.cursors.DictCursor
+        )
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM ownership;")
+            rows = cursor.fetchall()
+            for row in rows:
+                row['date'] = str(row['date'])
+                row['time'] = str(row['time'])
+            resp = jsonify(rows)
+            resp.status_code = 200
+            return resp
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({'error': 'Internal Server Error'}), 500
+    finally:
+        if connection:
+            connection.close()
+
+@app.route('/api/getOwnership/<customer_id>')
+def getOwnership():
+    connection = None
+    try:
+        connection = pymysql.connect(
+            host=app.config['MYSQL_HOST'],
+            user=app.config['MYSQL_DATABASE_USER'],
+            password=app.config['MYSQL_PASSWORD'],
+            db=app.config['MYSQL_DB'],
+            cursorclass=pymysql.cursors.DictCursor
+        )
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM ownership where customer_id = %s;", (vin,))
+            rows = cursor.fetchall()
             resp = jsonify(rows)
             resp.status_code = 200
             return resp
