@@ -1,6 +1,6 @@
 from flask import jsonify, Flask, request, render_template
 from flask_cors import CORS
-from datetime import datetime
+from datetime import datetime, timedelta
 import pymysql
 
 # MySQL configurations
@@ -267,8 +267,112 @@ def getVehiclePhotos(vin):
             connection.close()
 
 #Maybe combine getVehicle, getVehicleFeatures, and getVehiclePhotos
-#getCustomer/<id>
-#getOrder/<id>
+@app.route('/api/getCustomer/<id>')
+def getCustomer(id):
+    connection = None
+    try:
+        connection = pymysql.connect(
+            host=app.config['MYSQL_HOST'],
+            user=app.config['MYSQL_DATABASE_USER'],
+            password=app.config['MYSQL_PASSWORD'],
+            db=app.config['MYSQL_DB'],
+            cursorclass=pymysql.cursors.DictCursor
+        )
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM customer WHERE id = %s;", (id,))
+            rows = cursor.fetchone()
+            if rows:
+                resp = jsonify(rows)
+                resp.status_code = 200
+                return resp
+            else:
+                return jsonify({'error': 'Customer not found'}), 404
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({'error': 'Internal Server Error'}), 500
+    finally:
+        if connection:
+            connection.close()
+
+@app.route('/api/getAllCustomers')
+def getCustomers():
+    connection = None
+    try:
+        connection = pymysql.connect(
+            host=app.config['MYSQL_HOST'],
+            user=app.config['MYSQL_DATABASE_USER'],
+            password=app.config['MYSQL_PASSWORD'],
+            db=app.config['MYSQL_DB'],
+            cursorclass=pymysql.cursors.DictCursor
+        )
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM customer;")
+            rows = cursor.fetchall()
+            resp = jsonify(rows)
+            resp.status_code = 200
+            return resp
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({'error': 'Internal Server Error'}), 500
+    finally:
+        if connection:
+            connection.close()
+
+@app.route('/api/getOrder/<id>')
+def getOrder(id):
+    connection = None
+    try:
+        connection = pymysql.connect(
+            host=app.config['MYSQL_HOST'],
+            user=app.config['MYSQL_DATABASE_USER'],
+            password=app.config['MYSQL_PASSWORD'],
+            db=app.config['MYSQL_DB'],
+            cursorclass=pymysql.cursors.DictCursor
+        )
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM orders WHERE id = %s;", (id,))
+            row = cursor.fetchone()
+            if row:
+                row['date'] = str(row['date'])
+                row['time'] = str(row['time'])
+                resp = jsonify(rows)
+                resp.status_code = 200
+                return resp
+            else:
+                return jsonify({'error': 'Order not found'}), 404
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({'error': 'Internal Server Error'}), 500
+    finally:
+        if connection:
+            connection.close()
+
+@app.route('/api/getAllOrders')
+def getOrders():
+    connection = None
+    try:
+        connection = pymysql.connect(
+            host=app.config['MYSQL_HOST'],
+            user=app.config['MYSQL_DATABASE_USER'],
+            password=app.config['MYSQL_PASSWORD'],
+            db=app.config['MYSQL_DB'],
+            cursorclass=pymysql.cursors.DictCursor
+        )
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM orders;")
+            rows = cursor.fetchall()
+            for row in rows:
+                row['date'] = str(row['date'])
+                row['time'] = str(row['time'])
+            resp = jsonify(rows)
+            resp.status_code = 200
+            return resp
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({'error': 'Internal Server Error'}), 500
+    finally:
+        if connection:
+            connection.close()
 
 #Update
 

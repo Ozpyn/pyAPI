@@ -5,94 +5,219 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
 </head>
 
 <body>
     <h1>API Documentation</h1>
-    <p>This is a simple API documentation for the Vehicle API.</p>
-
-    <h2>Endpoints</h2>
-
-    <h3>1. Get all vehicles</h3>
-    <p><strong>GET</strong> /api/getAllVehicles</p>
-    <p>Retrieves information about all vehicles.</p>
-
-    <h3>2. Get vehicle by VIN</h3>
-    <p><strong>GET</strong> /api/getVehicle/&lt;vin&gt;</p>
-    <p>Retrieves information about a vehicle based on its VIN.</p>
-
-    <h3>3. Get vehicle features by VIN</h3>
-    <p><strong>GET</strong> /api/getVehicleFeatures/&lt;vin&gt;</p>
-    <p>Retrieves features of a vehicle based on its VIN.</p>
-
-    <h3>4. Get vehicle photos by VIN</h3>
-    <p><strong>GET</strong> /api/getVehiclePhotos/&lt;vin&gt;</p>
-    <p>Retrieves photos of a vehicle based on its VIN.</p>
-
-    <h3>5. Delete vehicle by VIN</h3>
-    <p><strong>GET</strong> /api/deleteVehicle/&lt;vin&gt;</p>
-    <p>Deletes a vehicle from the database based on its VIN.</p>
-
-    <h3>6. Create new vehicle</h3>
-    <p><strong>POST</strong> /api/newVehicle</p>
-    <p>Creates a new vehicle entry in the database. Requires JSON payload with the following fields: vin, year, color,
-        mileage, make, model, type, mpg-city, mpg-hwy, msrp, photos (optional), features (optional).</p>
-
-    <h3>7. Create new order</h3>
-    <p><strong>POST</strong> /api/newOrder</p>
-    <p>Creates a new order in the database. Requires JSON payload with the following fields: vin, customer_id,
-        street_name, street_number, apartment_number, city, state, zip.</p>
-
-    <h2>Example Usage</h2>
-    <p>Assuming the API is hosted on <strong>http://174.104.199.92:5004</strong>:</p>
+    <h2>Endpoints:</h2>
+    <ul>
+        <li><strong>Create:</strong></li>
+        <ul>
+            <li><strong>POST /api/newVehicle</strong></li>
+            <li><strong>POST /api/newCustomer</strong></li>
+            <li><strong>POST /api/newOrder</strong></li>
+        </ul>
+        <li><strong>Read:</strong></li>
+        <ul>
+            <li><strong>GET /api/getAllVehicles</strong></li>
+            <li><strong>GET /api/getVehicle/{vin}</strong></li>
+            <li><strong>GET /api/getVehicleFeatures/{vin}</strong></li>
+            <li><strong>GET /api/getVehiclePhotos/{vin}</strong></li>
+            <li><strong>GET /api/getCustomer/{id}</strong></li>
+            <li><strong>GET /api/getAllCustomers</strong></li>
+            <li><strong>GET /api/getOrder/{id}</strong></li>
+            <li><strong>GET /api/getAllOrders</strong></li>
+        </ul>
+        <li><strong>Update:</strong></li>
+        <ul>
+            <li>UpdateCustomerPhoneNumber</li>
+            <li>UpdateCustomerAddress</li>
+            <li>UpdateVehicle</li>
+            <li>UpdateOrder</li>
+        </ul>
+        <li><strong>Delete:</strong></li>
+        <ul>
+            <li><strong>DELETE /api/deleteVehicle/{vin}</strong></li>
+            <li>Delete Customer</li>
+            <li>Delete Order</li>
+        </ul>
+        <li><strong>Base endpoints:</strong></li>
+        <ul>
+            <li><strong>GET /</strong> - Welcome Page</li>
+        </ul>
+    </ul>
+    <h2>Response Format:</h2>
+    <p>The API returns JSON data in the following format:</p>
     <pre>
-        <code>
-            // Get all vehicles
-            GET http://174.104.199.92:5004/api/getAllVehicles
+{
+    "success": "Vehicle added successfully"
+}
+    </pre>
+    <p>or</p>
+    <pre>
+{
+    "error": "Internal Server Error"
+}
+    </pre>
+    <p>depending on the outcome of the request.</p>
 
-            // Get vehicle by VIN
-            GET http://174.104.199.92:5004/api/getVehicle/ABC123
+    <h1>Sample API Calls</h1>
 
-            // Get vehicle features by VIN
-            GET http://174.104.199.92:5004/api/getVehicleFeatures/ABC123
-
-            // Get vehicle photos by VIN
-            GET http://174.104.199.92:5004/api/getVehiclePhotos/ABC123
-
-            // Delete vehicle by VIN
-            GET http://174.104.199.92:5004/api/deleteVehicle/ABC123
-
-            // Create new vehicle
-            POST http://174.104.199.92:5004/api/newVehicle
+    <h2>Create Endpoints:</h2>
+    <ul>
+        <li>
+            <h3>Create a New Vehicle:</h3>
+            <pre>
+            <code>POST /api/newVehicle</code>
+            <code>Content-Type: application/json</code>
+            <code>
             {
                 "vin": "ABC123",
                 "year": 2022,
-                "color": "Blue",
-                "mileage": 15000,
+                "color": "Red",
+                "mileage": 5000,
                 "make": "Toyota",
                 "model": "Camry",
                 "type": "Sedan",
-                "mpg-city": 25,
+                "mpg-city": 28,
                 "mpg-hwy": 35,
                 "msrp": 25000,
                 "photos": ["photo1.jpg", "photo2.jpg"],
                 "features": ["Feature 1", "Feature 2"]
             }
-
-            // Create new order
-            POST http://174.104.199.92:5004/api/newOrder
+            </code>
+        </pre>
+        </li>
+        <li>
+            <h3>Create a New Customer:</h3>
+            <pre>
+            <code>POST /api/newCustomer</code>
+            <code>Content-Type: application/json</code>
+            <code>
+            {
+                "email": "customer@example.com",
+                "first_name": "John",
+                "last_name": "Doe",
+                "street_name": "Main St",
+                "street_number": "123",
+                "city": "Anytown",
+                "state": "CA",
+                "zip_code": "12345",
+                "phone_numbers": ["123-456-7890", "987-654-3210"],
+                "phone_types": ["Home", "Work"]
+            }
+            </code>
+        </pre>
+        </li>
+        <li>
+            <h3>Create a New Order:</h3>
+            <pre>
+            <code>POST /api/newOrder</code>
+            <code>Content-Type: application/json</code>
+            <code>
             {
                 "vin": "ABC123",
                 "customer_id": 1,
-                "street_name": "Cedar Bark Drive",
-                "street_number": 675,
-                "apartment_number": 1,
-                "city": "Aurora",
-                "state": "Ohio",
-                "zip": 44202
+                "street_name": "Main St",
+                "street_number": "123",
+                "apartment_number": "",
+                "city": "Anytown",
+                "state": "CA",
+                "zip": "12345"
             }
-        </code>
-    </pre>
+            </code>
+        </pre>
+        </li>
+    </ul>
+
+    <h2>Read Endpoints:</h2>
+    <ul>
+        <li>
+            <h3>Get All Vehicles:</h3>
+            <pre>
+            <code>GET /api/getAllVehicles</code>
+        </pre>
+        </li>
+        <li>
+            <h3>Get Vehicle by VIN:</h3>
+            <pre>
+            <code>GET /api/getVehicle/ABC123</code>
+        </pre>
+        </li>
+        <li>
+            <h3>Get Vehicle Features by VIN:</h3>
+            <pre>
+            <code>GET /api/getVehicleFeatures/ABC123</code>
+        </pre>
+        </li>
+        <li>
+            <h3>Get Vehicle Photos by VIN:</h3>
+            <pre>
+            <code>GET /api/getVehiclePhotos/ABC123</code>
+        </pre>
+        </li>
+        <li>
+            <h3>Get Customer by ID:</h3>
+            <pre>
+            <code>GET /api/getCustomer/1</code>
+        </pre>
+        </li>
+        <li>
+            <h3>Get All Customers:</h3>
+            <pre>
+            <code>GET /api/getAllCustomers</code>
+        </pre>
+        </li>
+        <li>
+            <h3>Get Order by ID:</h3>
+            <pre>
+            <code>GET /api/getOrder/1</code>
+        </pre>
+        </li>
+        <li>
+            <h3>Get All Orders:</h3>
+            <pre>
+            <code>GET /api/getAllOrders</code>
+        </pre>
+        </li>
+    </ul>
+
+    <h2>Base Endpoints:</h2>
+    <ul>
+        <li>
+            <h3>Welcome Page:</h3>
+            <pre>
+            <code>GET /</code>
+        </pre>
+        </li>
+    </ul>
 </body>
 
 </html>
