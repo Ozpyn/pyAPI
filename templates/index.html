@@ -48,9 +48,12 @@
         <li><strong>Read:</strong></li>
         <ul>
             <li><strong>GET /api/getAllVehicles</strong></li>
-            <li><strong>GET /api/getVehicle/{vin}</strong></li>
-            <li><strong>GET /api/getVehicleFeatures/{vin}</strong></li>
-            <li><strong>GET /api/getVehiclePhotos/{vin}</strong></li>
+            <s>
+            <li>GET /api/getVehicle/{vin}</li>
+            <li>GET /api/getVehicleFeatures/{vin}</li>
+            <li>GET /api/getVehiclePhotos/{vin}</li>
+            </s>
+            <li><strong>GET /API/getVehicleDetails/{id}</strong></li>
             <li><strong>GET /api/getCustomer/{id}</strong></li>
             <li><strong>GET /api/getAllCustomers</strong></li>
             <li><strong>GET /api/getOrder/{id}</strong></li>
@@ -184,33 +187,28 @@
             <code>GET /api/getAllVehicles</code>
         </pre>
         </li>
+        <s>
         <li>
-            <a href="/api/getVehicle/ABC123">
                 <h3>Get Vehicle by VIN:</h3>
-            </a>
             <pre>
             <code>GET /api/getVehicle/ABC123</code>
         </pre>
         </li>
         <li>
-            <a href="/api/getVehicleFeatures/ABC123">
                 <h3>Get Vehicle Features by VIN:</h3>
-            </a>
             <pre>
             <code>GET /api/getVehicleFeatures/ABC123</code>
         </pre>
         </li>
         <li>
-            <a href="/api/getVehiclePhotos/ABC123">
                 <h3>Get Vehicle Photos by VIN:</h3>
-            </a>
             <pre>
             <code>GET /api/getVehiclePhotos/ABC123</code>
         </pre>
         </li>
+    </s>
         <li>
             <a href="/api/getVehicleDetails/ABC123">
-                <h3>(Combines getVehicle, getVehicleFeatures, and getVehiclePhotos to reduce number of API calls)</h3>
                 <h3>Get all Vehicle data by VIN:</h3>
             </a>
             <pre>
