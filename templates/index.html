@@ -43,6 +43,7 @@
             <li><strong>POST /api/newVehicle</strong></li>
             <li><strong>POST /api/newCustomer</strong></li>
             <li><strong>POST /api/newOrder</strong></li>
+            <li><strong>POST /api/newOwner</strong></li>
         </ul>
         <li><strong>Read:</strong></li>
         <ul>
@@ -54,6 +55,8 @@
             <li><strong>GET /api/getAllCustomers</strong></li>
             <li><strong>GET /api/getOrder/{id}</strong></li>
             <li><strong>GET /api/getAllOrders</strong></li>
+            <li><strong>GET /api/getAllOwnership</strong></li>
+            <li><strong>GET /api/getOwnership/{customer_id}</strong></li>
         </ul>
         <li><strong>Update:</strong></li>
         <ul>
@@ -206,6 +209,15 @@
         </pre>
         </li>
         <li>
+            <a href="/api/getVehicleDetails/ABC123">
+                <h3>(Combines getVehicle, getVehicleFeatures, and getVehiclePhotos to reduce number of API calls)</h3>
+                <h3>Get all Vehicle data by VIN:</h3>
+            </a>
+            <pre>
+            <code>GET /api/getVehicleDetails/ABC123</code>
+        </pre>
+        </li>
+        <li>
             <a href="/api/getCustomer/1">
                 <h3>Get Customer by ID:</h3>
             </a>
@@ -239,7 +251,7 @@
         </li>
         <li>
             <a href="/api/getAllOwnership">
-                <h3>Get All Orders:</h3>
+                <h3>Get All Ownership Relations:</h3>
             </a>
             <pre>
             <code>GET /api/getAllOwnership</code>
@@ -247,7 +259,7 @@
         </li>
         <li>
             <a href="/api/getOwnership/1">
-                <h3>Get All Orders:</h3>
+                <h3>Get Ownership by customer id:</h3>
             </a>
             <pre>
             <code>GET /api/getOwnership/1</code>

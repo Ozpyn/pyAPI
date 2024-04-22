@@ -308,6 +308,68 @@ def getVehiclePhotos(vin):
         if connection:
             connection.close()
 
+#getVehicleDetails combines getVehicle, getVehicleFeatures, and getVehiclePhotos.
+# hopefully to reduce the number of api calls
+@app.route('/api/getVehicleDetails/<vin>')
+def getVehicleDetails(vin):
+    connection = None
+    try:
+        connection = pymysql.connect(
+            host=app.config['MYSQL_HOST'],
+            user=app.config['MYSQL_DATABASE_USER'],
+            password=app.config['MYSQL_PASSWORD'],
+            db=app.config['MYSQL_DB'],
+            cursorclass=pymysql.cursors.DictCursor
+        )
+        with connection.cursor() as cursor:
+            # Fetch vehicle details
+            cursor.execute("SELECT * FROM vehicle WHERE vin = %s;", (vin,))
+            vehicle_data = cursor.fetchone()
+            if not vehicle_data:
+                return jsonify({'error': 'Vehicle not found'}), 404
+
+            # Fetch vehicle features if available
+            cursor.execute("SELECT feature FROM vehicle_features WHERE vehicle_vin = %s;", (vin,))
+            features_data = [row['feature'] for row in cursor.fetchall()]
+
+            # Fetch vehicle photos if available
+            cursor.execute("SELECT photo FROM vehicle_photos WHERE vehicle_vin = %s;", (vin,))
+            photos_data = [row['photo'] for row in cursor.fetchall()]
+
+            # Combine data into a single response
+            vehicle_details = {
+                "vin": vehicle_data['vin'],
+                "year": vehicle_data['year'],
+                "color": vehicle_data['color'],
+                "mileage": vehicle_data['mileage'],
+                "make": vehicle_data['make'],
+                "model": vehicle_data['model'],
+                "type": vehicle_data['type'],
+                "mpg-city": vehicle_data['mpg-city'],
+                "mpg-hwy": vehicle_data['mpg-hwy'],
+                "msrp": vehicle_data['msrp'],
+            }
+
+            # Add photos and features if available
+            if photos_data:
+                vehicle_details["photos"] = photos_data
+            if features_data:
+                vehicle_details["features"] = features_data
+
+            resp = jsonify(vehicle_details)
+            resp.status_code = 200
+            return resp
+
+    except Exception as e:
+        print("Error:", e)  # Debug print statement
+        return jsonify({'error': str(e)}), 500  # Return the actual error message
+    finally:
+        if connection:
+            connection.close()
+
+
+
+
 #Maybe combine getVehicle, getVehicleFeatures, and getVehiclePhotos
 @app.route('/api/getCustomer/<id>')
 def getCustomer(id):
@@ -430,9 +492,6 @@ def getAllOwnership():
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM ownership;")
             rows = cursor.fetchall()
-            for row in rows:
-                row['date'] = str(row['date'])
-                row['time'] = str(row['time'])
             resp = jsonify(rows)
             resp.status_code = 200
             return resp
@@ -444,7 +503,7 @@ def getAllOwnership():
             connection.close()
 
 @app.route('/api/getOwnership/<customer_id>')
-def getOwnership():
+def getOwnership(customer_id):
     connection = None
     try:
         connection = pymysql.connect(
@@ -455,7 +514,7 @@ def getOwnership():
             cursorclass=pymysql.cursors.DictCursor
         )
         with connection.cursor() as cursor:
-            cursor.execute("SELECT * FROM ownership where customer_id = %s;", (vin,))
+            cursor.execute("SELECT id, vehicle_vin FROM ownership where customer_id = %s;", (customer_id,))
             rows = cursor.fetchall()
             resp = jsonify(rows)
             resp.status_code = 200
@@ -466,6 +525,7 @@ def getOwnership():
     finally:
         if connection:
             connection.close()
+
 
 #Update
 
