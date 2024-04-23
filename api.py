@@ -375,7 +375,7 @@ def getVehicleDetails(vin):
 def searchForVehicles():
     connection = None
     try:
-        search_query = request.args.get('q')
+        search_query = request.args.get('search')
 
         connection = pymysql.connect(
             host=app.config['MYSQL_HOST'],
@@ -403,6 +403,9 @@ def searchForVehicles():
                 if vehicle_response.status_code == 200:
                     vehicle_details = vehicle_response.json()
                     search_results.append(vehicle_details) 
+
+                else:
+                    print(f"Error failed to find vehicle with VIN: {vin}")
 
             # Check if no vehicles found
             if not search_results:
