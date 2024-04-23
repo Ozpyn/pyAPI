@@ -389,8 +389,8 @@ def searchForVehicles():
 
             # Query to retreive the vins of each vehicle
             sql_query_for_vehicle_vins = ("SELECT vin FROM vehicle WHERE make LIKE %s OR model LIKE %s;")
-            user_input = ('%' + search_query + '%')
-            cursor.execute(sql_query_for_vehicle_vins, (user_input, user_input))
+            user_inputted_search = ('%' + search_query + '%')
+            cursor.execute(sql_query_for_vehicle_vins, (user_inputted_search, user_inputted_search))
             vin_data = cursor.fetchall()
             vins = [row['vin'] for row in vin_data]
 
