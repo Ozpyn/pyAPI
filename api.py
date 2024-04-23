@@ -2,6 +2,7 @@ from flask import jsonify, Flask, request, render_template
 from flask_cors import CORS
 from datetime import datetime, timedelta
 import pymysql
+import requests
 
 # MySQL configurations
 app = Flask(__name__)
@@ -368,6 +369,55 @@ def getVehicleDetails(vin):
             connection.close()
 
 
+# searchForVehicles searches for vehicles based on user inputted search
+# Use the searchQuery from the URL 
+@app.route('/api/searchForVehicles')
+def searchForVehicles():
+    connection = None
+    try:
+        search_query = request.args.get('q')
+
+        connection = pymysql.connect(
+            host=app.config['MYSQL_HOST'],
+            user=app.config['MYSQL_DATABASE_USER'],
+            password=app.config['MYSQL_PASSWORD'],
+            db=app.config['MYSQL_DB'],
+            cursorclass=pymysql.cursors.DictCursor
+        )
+
+        with connection.cursor() as cursor:
+
+            # Query to retreive the vins of each vehicle
+            sql_query_for_vehicle_vins = ("SELECT vin FROM vehicle WHERE make LIKE %s OR model LIKE %s;")
+            cursor.execute(sql_query_for_vehicle_vins, ('%' + search_query + '%', '%' + search_query + '%'))
+            vin_data = cursor.fetchall()
+            vins = [row['vin'] for row in vin_data]
+
+            search_results = []
+
+            # Iterate over each vin
+            for vin in vins:
+                # Use getVehicleDetails enpoint to retreive all vehicle details of each vin
+                vehicle_response = requests.get(f"http://174.104.199.92:5004/api/getVehicleDetails/{vin}")
+
+                if vehicle_response.status_code == 200:
+                    vehicle_details = vehicle_response.json()
+                    search_results.append(vehicle_details) 
+
+            # Check if no vehicles found
+            if not search_results:
+                return jsonify({'error': 'Vehicles not found'}), 404
+
+            resp = jsonify(search_results)
+            resp.status_code = 200
+            return resp
+
+    except Exception as e:
+        print("Error:", e)  # Debug print statement
+        return jsonify({'error': str(e)}), 500  # Return the actual error message
+    finally:
+        if connection:
+            connection.close()
 
 
 #Maybe combine getVehicle, getVehicleFeatures, and getVehiclePhotos
