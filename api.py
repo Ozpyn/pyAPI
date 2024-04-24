@@ -39,6 +39,11 @@ def insert_query(query, params):
     finally:
         connection.close()
 
+def error_handler(err):
+    print("Error: ", err)
+    return jsonify({'error': 'Internal Server Error'}), 500
+
+
 # These credentials are only useful on the database server, which is only accessible over the air by this api
 
 # This API Utilises the CRUD method for data management
@@ -47,7 +52,6 @@ def insert_query(query, params):
 
 @app.route('/api/newVehicle', methods=['POST'])
 def createVehicle():
-    connection = None
     try:
         data = request.json
         vin = data["vin"]
@@ -63,26 +67,18 @@ def createVehicle():
         photos = data.get("photos", [])
         features = data.get("features", [])
 
-        connection = get_database_connection()
+        insert_query("INSERT INTO vehicle VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", 
+                     (vin, year, color, mileage, make, model, typee, mpg_city, mpg_hwy, msrp))
 
-        with connection.cursor() as cursor:
-            cursor.execute("INSERT INTO vehicle VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (vin, year, color, mileage, make, model, typee, mpg_city, mpg_hwy, msrp))
-            
-            for photo in photos:
-                cursor.execute("INSERT INTO vehicle_photos (vehicle_vin, photo) VALUES (%s, %s);", (vin, photo))
+        for photo in photos:
+            insert_query("INSERT INTO vehicle_photos (vehicle_vin, photo) VALUES (%s, %s);", (vin, photo))
 
-            for feature in features:
-                cursor.execute("INSERT INTO vehicle_features (vehicle_vin, feature) VALUES (%s, %s);", (vin, feature))
-
-        connection.commit()
+        for feature in features:
+            insert_query("INSERT INTO vehicle_features (vehicle_vin, feature) VALUES (%s, %s);", (vin, feature))
 
         return jsonify({'success': 'Vehicle added successfully'}), 200
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
-    finally:
-        if connection:
-            connection.close()
+        return error_handler(e)
 
 @app.route('/api/newCustomer', methods=['POST'])
 def createCustomer():
@@ -120,8 +116,7 @@ def createCustomer():
 
         return jsonify({'success': 'Customer added successfully'}), 200
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -165,9 +160,7 @@ def createOrder():
         return jsonify({'success': 'Order made successfully'}), 200
     
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
-    
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -202,9 +195,7 @@ def createOwner():
         return jsonify({'success': 'Order made successfully'}), 200
     
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
-    
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -216,19 +207,16 @@ def getVehicles():
     connection = None
     try:
         connection = get_database_connection()
-
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM vehicle;")
             rows = cursor.fetchall()
-            resp = jsonify(rows)
-            resp.status_code = 200
-            return resp
+            return jsonify(rows), 200
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
+
 
 @app.route('/api/getVehicle/<vin>')
 def getVehicle(vin):
@@ -240,14 +228,11 @@ def getVehicle(vin):
             cursor.execute("SELECT * FROM vehicle WHERE vin = %s;", (vin,))
             rows = cursor.fetchone()
             if rows:
-                resp = jsonify(rows)
-                resp.status_code = 200
-                return resp
+                return jsonify(rows), 200
             else:
                 return jsonify({'error': 'Vehicle not found'}), 404
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -262,14 +247,11 @@ def getVehicleFeatures(vin):
             cursor.execute("SELECT feature FROM vehicle_features WHERE vehicle_vin = %s;", (vin,))
             rows = cursor.fetchall()
             if rows:
-                resp = jsonify(rows)
-                resp.status_code = 200
-                return resp
+                return jsonify(rows), 200
             else:
                 return jsonify({'error': 'Features not found'}), 404
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -284,14 +266,11 @@ def getVehiclePhotos(vin):
             cursor.execute("SELECT photo FROM vehicle_photos WHERE vehicle_vin = %s;", (vin,))
             rows = cursor.fetchall()
             if rows:
-                resp = jsonify(rows)
-                resp.status_code = 200
-                return resp
+                return jsonify(rows), 200
             else:
                 return jsonify({'error': 'Features not found'}), 404
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -339,13 +318,11 @@ def getVehicleDetails(vin):
             if features_data:
                 vehicle_details["features"] = features_data
 
-            resp = jsonify(vehicle_details)
-            resp.status_code = 200
-            return resp
+            return jsonify(vehicle_details), 200
+
 
     except Exception as e:
-        print("Error:", e)  # Debug print statement
-        return jsonify({'error': str(e)}), 500  # Return the actual error message
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -388,13 +365,10 @@ def searchForVehicles():
             if not search_results:
                 return jsonify({'error': 'Vehicles not found'}), 404
 
-            resp = jsonify(search_results)
-            resp.status_code = 200
-            return resp
+            return jsonify(search_results), 200
 
     except Exception as e:
-        print("Error:", e)  # Debug print statement
-        return jsonify({'error': str(e)}), 500  # Return the actual error message
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -417,8 +391,7 @@ def getCustomer(id):
             else:
                 return jsonify({'error': 'Customer not found'}), 404
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -436,8 +409,7 @@ def getCustomers():
             resp.status_code = 200
             return resp
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -460,8 +432,7 @@ def getOrder(id):
             else:
                 return jsonify({'error': 'Order not found'}), 404
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -482,8 +453,7 @@ def getOrders():
             resp.status_code = 200
             return resp
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -501,8 +471,7 @@ def getAllOwnership():
             resp.status_code = 200
             return resp
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -520,8 +489,7 @@ def getOwnership(customer_id):
             resp.status_code = 200
             return resp
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -558,8 +526,7 @@ def deleteVehicle(vin):
             else:
                 return jsonify({'error': 'Vehicle not found'}), 404
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -580,10 +547,8 @@ def not_found(error=None):
         'status': 404,
         'message': 'Not Found: ' + request.url,
     }
-    resp = jsonify(message)
-    resp.status_code = 404
+    return jsonify(message), 404
 
-    return resp
 
 if __name__ == "__main__":
     app.run(host='192.168.50.138', port=5004)
