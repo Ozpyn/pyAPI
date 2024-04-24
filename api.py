@@ -12,6 +12,33 @@ app.config['MYSQL_PASSWORD'] = 'dbpass'
 app.config['MYSQL_DB'] = 'db'
 app.config['MYSQL_HOST'] = 'localhost'
 
+def get_database_connection():
+    return pymysql.connect(
+        host=app.config['MYSQL_HOST'],
+        user=app.config['MYSQL_DATABASE_USER'],
+        password=app.config['MYSQL_PASSWORD'],
+        db=app.config['MYSQL_DB'],
+        cursorclass=pymysql.cursors.DictCursor
+    )
+
+def execute_query(query, params=None):
+    connection = get_database_connection()
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(query, params)
+            return cursor.fetchall()
+    finally:
+        connection.close()
+
+def insert_query(query, params):
+    connection = get_database_connection()
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(query, params)
+            connection.commit()
+    finally:
+        connection.close()
+
 # These credentials are only useful on the database server, which is only accessible over the air by this api
 
 # This API Utilises the CRUD method for data management
@@ -36,13 +63,8 @@ def createVehicle():
         photos = data.get("photos", [])
         features = data.get("features", [])
 
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("INSERT INTO vehicle VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (vin, year, color, mileage, make, model, typee, mpg_city, mpg_hwy, msrp))
             
@@ -83,13 +105,8 @@ def createCustomer():
         if not email or not first_name or not last_name or not street_name or not street_number or not city or not state or not zip_code:
             return jsonify({'error': 'Missing required fields'}), 400
 
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             # Insert customer information into the database
             cursor.execute("INSERT INTO customer (email, first_name, last_name, street_name, street_number, city, state, zip_code) VALUES (%s, %s, %s, %s, %s, %s, %s, %s);", (email, first_name, last_name, street_name, street_number, city, state, zip_code))
@@ -126,13 +143,8 @@ def createOrder():
         current_date = datetime.now().date()
         current_time = datetime.now().time()
 
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM customer WHERE id = %s;", (customer_id,))
             customerExists = cursor.fetchone()
@@ -168,13 +180,8 @@ def createOwner():
         vehicle_vin = data["vin"]
         customer_id = data["customer_id"]
 
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM customer WHERE id = %s;", (customer_id,))
             customerExists = cursor.fetchone()
@@ -208,13 +215,8 @@ def createOwner():
 def getVehicles():
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM vehicle;")
             rows = cursor.fetchall()
@@ -232,13 +234,8 @@ def getVehicles():
 def getVehicle(vin):
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM vehicle WHERE vin = %s;", (vin,))
             rows = cursor.fetchone()
@@ -259,13 +256,8 @@ def getVehicle(vin):
 def getVehicleFeatures(vin):
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT feature FROM vehicle_features WHERE vehicle_vin = %s;", (vin,))
             rows = cursor.fetchall()
@@ -286,13 +278,8 @@ def getVehicleFeatures(vin):
 def getVehiclePhotos(vin):
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT photo FROM vehicle_photos WHERE vehicle_vin = %s;", (vin,))
             rows = cursor.fetchall()
@@ -315,13 +302,8 @@ def getVehiclePhotos(vin):
 def getVehicleDetails(vin):
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             # Fetch vehicle details
             cursor.execute("SELECT * FROM vehicle WHERE vin = %s;", (vin,))
@@ -377,13 +359,7 @@ def searchForVehicles():
     try:
         search_query = request.args.get('search')
 
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
 
         with connection.cursor() as cursor:
 
@@ -429,13 +405,8 @@ def searchForVehicles():
 def getCustomer(id):
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM customer WHERE id = %s;", (id,))
             rows = cursor.fetchone()
@@ -456,13 +427,8 @@ def getCustomer(id):
 def getCustomers():
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM customer;")
             rows = cursor.fetchall()
@@ -480,13 +446,8 @@ def getCustomers():
 def getOrder(id):
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM orders WHERE id = %s;", (id,))
             row = cursor.fetchone()
@@ -509,13 +470,8 @@ def getOrder(id):
 def getOrders():
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM orders;")
             rows = cursor.fetchall()
@@ -536,13 +492,8 @@ def getOrders():
 def getAllOwnership():
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM ownership;")
             rows = cursor.fetchall()
@@ -560,13 +511,8 @@ def getAllOwnership():
 def getOwnership(customer_id):
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT id, vehicle_vin FROM ownership where customer_id = %s;", (customer_id,))
             rows = cursor.fetchall()
@@ -594,13 +540,8 @@ def getOwnership(customer_id):
 def deleteVehicle(vin):
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM vehicle WHERE vin = %s;", (vin,))
             rows = cursor.fetchone()
