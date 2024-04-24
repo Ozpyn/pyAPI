@@ -375,7 +375,7 @@ def getVehicleDetails(vin):
 def searchForVehicles():
     connection = None
     try:
-        search_query = request.args.get('q')
+        search_query = request.args.get('search')
 
         connection = pymysql.connect(
             host=app.config['MYSQL_HOST'],
@@ -389,7 +389,8 @@ def searchForVehicles():
 
             # Query to retreive the vins of each vehicle
             sql_query_for_vehicle_vins = ("SELECT vin FROM vehicle WHERE make LIKE %s OR model LIKE %s;")
-            cursor.execute(sql_query_for_vehicle_vins, ('%' + search_query + '%', '%' + search_query + '%'))
+            user_input = ('%' + search_query + '%')
+            cursor.execute(sql_query_for_vehicle_vins, (user_input, user_input))
             vin_data = cursor.fetchall()
             vins = [row['vin'] for row in vin_data]
 
@@ -403,6 +404,9 @@ def searchForVehicles():
                 if vehicle_response.status_code == 200:
                     vehicle_details = vehicle_response.json()
                     search_results.append(vehicle_details) 
+
+                else:
+                    print(f"Error failed to find vehicle with VIN: {vin}")
 
             # Check if no vehicles found
             if not search_results:
