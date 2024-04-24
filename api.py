@@ -320,7 +320,6 @@ def getVehicleDetails(vin):
 
             return jsonify(vehicle_details), 200
 
-
     except Exception as e:
         return error_handler(e)
     finally:
@@ -385,9 +384,7 @@ def getCustomer(id):
             cursor.execute("SELECT * FROM customer WHERE id = %s;", (id,))
             rows = cursor.fetchone()
             if rows:
-                resp = jsonify(rows)
-                resp.status_code = 200
-                return resp
+                return jsonify(rows), 200
             else:
                 return jsonify({'error': 'Customer not found'}), 404
     except Exception as e:
@@ -405,9 +402,8 @@ def getCustomers():
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM customer;")
             rows = cursor.fetchall()
-            resp = jsonify(rows)
-            resp.status_code = 200
-            return resp
+            return jsonify(rows), 200
+
     except Exception as e:
         return error_handler(e)
     finally:
@@ -426,9 +422,7 @@ def getOrder(id):
             if row:
                 row['date'] = str(row['date'])
                 row['time'] = str(row['time'])
-                resp = jsonify(rows)
-                resp.status_code = 200
-                return resp
+                return jsonify(rows), 200
             else:
                 return jsonify({'error': 'Order not found'}), 404
     except Exception as e:
@@ -467,9 +461,8 @@ def getAllOwnership():
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM ownership;")
             rows = cursor.fetchall()
-            resp = jsonify(rows)
-            resp.status_code = 200
-            return resp
+            return jsonify(rows), 200
+
     except Exception as e:
         return error_handler(e)
     finally:
@@ -485,9 +478,8 @@ def getOwnership(customer_id):
         with connection.cursor() as cursor:
             cursor.execute("SELECT id, vehicle_vin FROM ownership where customer_id = %s;", (customer_id,))
             rows = cursor.fetchall()
-            resp = jsonify(rows)
-            resp.status_code = 200
-            return resp
+            return jsonify(rows), 200
+
     except Exception as e:
         return error_handler(e)
     finally:
@@ -521,8 +513,7 @@ def deleteVehicle(vin):
                     connection.commit()
                     return jsonify({'success': 'Vehicle removed successfully'}), 200
                 except Exception as e:
-                    print("Error:", e)
-                    return jsonify({'error': 'Internal Server Error'}), 500
+                    return error_handler(e)
             else:
                 return jsonify({'error': 'Vehicle not found'}), 404
     except Exception as e:
