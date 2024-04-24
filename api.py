@@ -376,6 +376,7 @@ def searchForVehicles():
     connection = None
     try:
         search_query = request.args.get('search')
+        print(search_query)
 
         connection = pymysql.connect(
             host=app.config['MYSQL_HOST'],
