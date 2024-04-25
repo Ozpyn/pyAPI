@@ -333,16 +333,30 @@ def getVehicleDetails(vin):
 def searchForVehicles():
     connection = None
     try:
-        search_query = request.args.get('search')
+        search_query = request.args.get('q')
+        search_words = search_query.split()
 
         connection = get_database_connection()
 
         with connection.cursor() as cursor:
+            # Check if only one word was inputted as a search
+            if len(search_words) == 1:
 
             # Query to retreive the vins of each vehicle
-            sql_query_for_vehicle_vins = ("SELECT vin FROM vehicle WHERE make LIKE %s OR model LIKE %s;")
-            user_input = ('%' + search_query + '%')
-            cursor.execute(sql_query_for_vehicle_vins, (user_input, user_input))
+                sql_query_for_vehicle_vins = ("SELECT vin FROM vehicle WHERE make LIKE %s OR model LIKE %s;")
+                user_inputted_search = ('%' + search_query + '%', '%' + search_query + '%')
+
+            # 2 words entered as search so search by make and model
+            elif len(search_words) == 2:
+                vehicle_make = search_words[0]
+                vehicle_model = search_words[1]
+                sql_query_for_vehicle_vins = ("SELECT vin FROM vehicle WHERE make = %s AND model = %s;")
+                user_inputted_search = (vehicle_make, vehicle_model)
+            
+            else:
+                return jsonify({'ERROR' : 'Too many words in search'}), 400
+
+            cursor.execute(sql_query_for_vehicle_vins, (user_inputted_search))
             vin_data = cursor.fetchall()
             vins = [row['vin'] for row in vin_data]
 
