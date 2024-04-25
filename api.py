@@ -333,7 +333,7 @@ def getVehicleDetails(vin):
 def searchForVehicles():
     connection = None
     try:
-        search_query = request.args.get('search')
+        search_query = request.args.get('q')
         search_words = search_query.split()
 
         connection = get_database_connection()
