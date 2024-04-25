@@ -12,6 +12,38 @@ app.config['MYSQL_PASSWORD'] = 'dbpass'
 app.config['MYSQL_DB'] = 'db'
 app.config['MYSQL_HOST'] = 'localhost'
 
+def get_database_connection():
+    return pymysql.connect(
+        host=app.config['MYSQL_HOST'],
+        user=app.config['MYSQL_DATABASE_USER'],
+        password=app.config['MYSQL_PASSWORD'],
+        db=app.config['MYSQL_DB'],
+        cursorclass=pymysql.cursors.DictCursor
+    )
+
+def execute_query(query, params=None):
+    connection = get_database_connection()
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(query, params)
+            return cursor.fetchall()
+    finally:
+        connection.close()
+
+def insert_query(query, params):
+    connection = get_database_connection()
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(query, params)
+            connection.commit()
+    finally:
+        connection.close()
+
+def error_handler(err):
+    print("Error: ", err)
+    return jsonify({'error': 'Internal Server Error'}), 500
+
+
 # These credentials are only useful on the database server, which is only accessible over the air by this api
 
 # This API Utilises the CRUD method for data management
@@ -20,7 +52,6 @@ app.config['MYSQL_HOST'] = 'localhost'
 
 @app.route('/api/newVehicle', methods=['POST'])
 def createVehicle():
-    connection = None
     try:
         data = request.json
         vin = data["vin"]
@@ -36,31 +67,18 @@ def createVehicle():
         photos = data.get("photos", [])
         features = data.get("features", [])
 
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
-        with connection.cursor() as cursor:
-            cursor.execute("INSERT INTO vehicle VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (vin, year, color, mileage, make, model, typee, mpg_city, mpg_hwy, msrp))
-            
-            for photo in photos:
-                cursor.execute("INSERT INTO vehicle_photos (vehicle_vin, photo) VALUES (%s, %s);", (vin, photo))
+        insert_query("INSERT INTO vehicle VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", 
+                     (vin, year, color, mileage, make, model, typee, mpg_city, mpg_hwy, msrp))
 
-            for feature in features:
-                cursor.execute("INSERT INTO vehicle_features (vehicle_vin, feature) VALUES (%s, %s);", (vin, feature))
+        for photo in photos:
+            insert_query("INSERT INTO vehicle_photos (vehicle_vin, photo) VALUES (%s, %s);", (vin, photo))
 
-        connection.commit()
+        for feature in features:
+            insert_query("INSERT INTO vehicle_features (vehicle_vin, feature) VALUES (%s, %s);", (vin, feature))
 
         return jsonify({'success': 'Vehicle added successfully'}), 200
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
-    finally:
-        if connection:
-            connection.close()
+        return error_handler(e)
 
 @app.route('/api/newCustomer', methods=['POST'])
 def createCustomer():
@@ -83,13 +101,8 @@ def createCustomer():
         if not email or not first_name or not last_name or not street_name or not street_number or not city or not state or not zip_code:
             return jsonify({'error': 'Missing required fields'}), 400
 
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             # Insert customer information into the database
             cursor.execute("INSERT INTO customer (email, first_name, last_name, street_name, street_number, city, state, zip_code) VALUES (%s, %s, %s, %s, %s, %s, %s, %s);", (email, first_name, last_name, street_name, street_number, city, state, zip_code))
@@ -103,8 +116,7 @@ def createCustomer():
 
         return jsonify({'success': 'Customer added successfully'}), 200
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -126,13 +138,8 @@ def createOrder():
         current_date = datetime.now().date()
         current_time = datetime.now().time()
 
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM customer WHERE id = %s;", (customer_id,))
             customerExists = cursor.fetchone()
@@ -153,9 +160,7 @@ def createOrder():
         return jsonify({'success': 'Order made successfully'}), 200
     
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
-    
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -168,13 +173,8 @@ def createOwner():
         vehicle_vin = data["vin"]
         customer_id = data["customer_id"]
 
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM customer WHERE id = %s;", (customer_id,))
             customerExists = cursor.fetchone()
@@ -195,9 +195,7 @@ def createOwner():
         return jsonify({'success': 'Order made successfully'}), 200
     
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
-    
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -208,49 +206,33 @@ def createOwner():
 def getVehicles():
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM vehicle;")
             rows = cursor.fetchall()
-            resp = jsonify(rows)
-            resp.status_code = 200
-            return resp
+            return jsonify(rows), 200
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
+
 
 @app.route('/api/getVehicle/<vin>')
 def getVehicle(vin):
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM vehicle WHERE vin = %s;", (vin,))
             rows = cursor.fetchone()
             if rows:
-                resp = jsonify(rows)
-                resp.status_code = 200
-                return resp
+                return jsonify(rows), 200
             else:
                 return jsonify({'error': 'Vehicle not found'}), 404
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -259,25 +241,17 @@ def getVehicle(vin):
 def getVehicleFeatures(vin):
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT feature FROM vehicle_features WHERE vehicle_vin = %s;", (vin,))
             rows = cursor.fetchall()
             if rows:
-                resp = jsonify(rows)
-                resp.status_code = 200
-                return resp
+                return jsonify(rows), 200
             else:
                 return jsonify({'error': 'Features not found'}), 404
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -286,25 +260,17 @@ def getVehicleFeatures(vin):
 def getVehiclePhotos(vin):
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT photo FROM vehicle_photos WHERE vehicle_vin = %s;", (vin,))
             rows = cursor.fetchall()
             if rows:
-                resp = jsonify(rows)
-                resp.status_code = 200
-                return resp
+                return jsonify(rows), 200
             else:
                 return jsonify({'error': 'Features not found'}), 404
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -315,13 +281,8 @@ def getVehiclePhotos(vin):
 def getVehicleDetails(vin):
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             # Fetch vehicle details
             cursor.execute("SELECT * FROM vehicle WHERE vin = %s;", (vin,))
@@ -357,13 +318,10 @@ def getVehicleDetails(vin):
             if features_data:
                 vehicle_details["features"] = features_data
 
-            resp = jsonify(vehicle_details)
-            resp.status_code = 200
-            return resp
+            return jsonify(vehicle_details), 200
 
     except Exception as e:
-        print("Error:", e)  # Debug print statement
-        return jsonify({'error': str(e)}), 500  # Return the actual error message
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -378,13 +336,7 @@ def searchForVehicles():
         search_query = request.args.get('search')
         print(search_query)
 
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
 
         with connection.cursor() as cursor:
 
@@ -413,13 +365,10 @@ def searchForVehicles():
             if not search_results:
                 return jsonify({'error': 'Vehicles not found'}), 404
 
-            resp = jsonify(search_results)
-            resp.status_code = 200
-            return resp
+            return jsonify(search_results), 200
 
     except Exception as e:
-        print("Error:", e)  # Debug print statement
-        return jsonify({'error': str(e)}), 500  # Return the actual error message
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -430,25 +379,17 @@ def searchForVehicles():
 def getCustomer(id):
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM customer WHERE id = %s;", (id,))
             rows = cursor.fetchone()
             if rows:
-                resp = jsonify(rows)
-                resp.status_code = 200
-                return resp
+                return jsonify(rows), 200
             else:
                 return jsonify({'error': 'Customer not found'}), 404
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -457,22 +398,15 @@ def getCustomer(id):
 def getCustomers():
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM customer;")
             rows = cursor.fetchall()
-            resp = jsonify(rows)
-            resp.status_code = 200
-            return resp
+            return jsonify(rows), 200
+
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -481,27 +415,19 @@ def getCustomers():
 def getOrder(id):
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM orders WHERE id = %s;", (id,))
             row = cursor.fetchone()
             if row:
                 row['date'] = str(row['date'])
                 row['time'] = str(row['time'])
-                resp = jsonify(rows)
-                resp.status_code = 200
-                return resp
+                return jsonify(rows), 200
             else:
                 return jsonify({'error': 'Order not found'}), 404
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -510,13 +436,8 @@ def getOrder(id):
 def getOrders():
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM orders;")
             rows = cursor.fetchall()
@@ -527,8 +448,7 @@ def getOrders():
             resp.status_code = 200
             return resp
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -537,22 +457,15 @@ def getOrders():
 def getAllOwnership():
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM ownership;")
             rows = cursor.fetchall()
-            resp = jsonify(rows)
-            resp.status_code = 200
-            return resp
+            return jsonify(rows), 200
+
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -561,22 +474,15 @@ def getAllOwnership():
 def getOwnership(customer_id):
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT id, vehicle_vin FROM ownership where customer_id = %s;", (customer_id,))
             rows = cursor.fetchall()
-            resp = jsonify(rows)
-            resp.status_code = 200
-            return resp
+            return jsonify(rows), 200
+
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -595,13 +501,8 @@ def getOwnership(customer_id):
 def deleteVehicle(vin):
     connection = None
     try:
-        connection = pymysql.connect(
-            host=app.config['MYSQL_HOST'],
-            user=app.config['MYSQL_DATABASE_USER'],
-            password=app.config['MYSQL_PASSWORD'],
-            db=app.config['MYSQL_DB'],
-            cursorclass=pymysql.cursors.DictCursor
-        )
+        connection = get_database_connection()
+
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM vehicle WHERE vin = %s;", (vin,))
             rows = cursor.fetchone()
@@ -613,13 +514,11 @@ def deleteVehicle(vin):
                     connection.commit()
                     return jsonify({'success': 'Vehicle removed successfully'}), 200
                 except Exception as e:
-                    print("Error:", e)
-                    return jsonify({'error': 'Internal Server Error'}), 500
+                    return error_handler(e)
             else:
                 return jsonify({'error': 'Vehicle not found'}), 404
     except Exception as e:
-        print("Error:", e)
-        return jsonify({'error': 'Internal Server Error'}), 500
+        return error_handler(e)
     finally:
         if connection:
             connection.close()
@@ -640,10 +539,8 @@ def not_found(error=None):
         'status': 404,
         'message': 'Not Found: ' + request.url,
     }
-    resp = jsonify(message)
-    resp.status_code = 404
+    return jsonify(message), 404
 
-    return resp
 
 if __name__ == "__main__":
     app.run(host='192.168.50.138', port=5004)
