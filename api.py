@@ -91,9 +91,10 @@ def createCustomer():
         last_name = data.get("last_name")
         street_name = data.get("street_name")
         street_number = data.get("street_number")
+        apartment_number = data.get("apartment_number")
         city = data.get("city")
         state = data.get("state")
-        zip_code = data.get("zip_code")
+        zip_code = data.get("zip")
         phone_numbers = data.get("phone_numbers", [])
         phone_types = data.get("phone_types", [])
 
@@ -105,18 +106,18 @@ def createCustomer():
 
         with connection.cursor() as cursor:
             # Insert customer information into the database
-            cursor.execute("INSERT INTO customer (email, first_name, last_name, street_name, street_number, city, state, zip_code) VALUES (%s, %s, %s, %s, %s, %s, %s, %s);", (email, first_name, last_name, street_name, street_number, city, state, zip_code))
+            cursor.execute("INSERT INTO customer (email, first_name, last_name, street_name, street_number, apartment_number, city, state, zip) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);", (email, first_name, last_name, street_name, street_number, apartment_number, city, state, zip_code))
             customer_id = cursor.lastrowid
 
             # Insert phone numbers with corresponding types
             for phone_number, phone_type in zip(phone_numbers, phone_types):
-                cursor.execute("INSERT INTO customer_phones (customer_id, phone_number, phone_type) VALUES (%s, %s, %s);", (customer_id, phone_number, phone_type))
+                cursor.execute("INSERT INTO customer_phone_numbers (customer_id, phone_number, phone_type) VALUES (%s, %s, %s);", (customer_id, phone_number, phone_type))
 
         connection.commit()
 
         return jsonify({'success': 'Customer added successfully'}), 200
     except Exception as e:
-        return error_handler(e)
+        return jsonify({'error': str(e)}), 500
     finally:
         if connection:
             connection.close()
