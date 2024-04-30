@@ -1,16 +1,56 @@
-from flask import jsonify, Flask, request, render_template
+from flask import jsonify, Flask, request, render_template, send_from_directory
 from flask_cors import CORS
 from datetime import datetime, timedelta
+import os
+import uuid
 import pymysql
 import requests
 
 # MySQL configurations
 app = Flask(__name__)
 CORS(app)
+app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50 MB
 app.config['MYSQL_DATABASE_USER'] = 'dbuser'
 app.config['MYSQL_PASSWORD'] = 'dbpass'
 app.config['MYSQL_DB'] = 'db'
 app.config['MYSQL_HOST'] = 'localhost'
+
+
+UPLOAD_FOLDER = './vehicle_images'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/api/uploadPhoto', methods=['POST'])
+def uploadPhoto():
+    try:
+        if 'photo' not in request.files:
+            return jsonify({'error': 'No file part'}), 400
+
+        photo = request.files['photo']
+
+        if photo.filename == '':
+            return jsonify({'error': 'No selected file'}), 400
+
+        if allowed_file(photo.filename):
+            filename = photo.filename
+            photo.save(os.path.join(UPLOAD_FOLDER, filename))
+            return jsonify({'success': 'Photo uploaded successfully', 'filename': filename}), 200
+        else:
+            return jsonify({'error': 'Invalid file type'}), 400
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/getPhoto/<filename>', methods=['GET'])
+def getPhoto(filename):
+    try:
+        return send_from_directory(UPLOAD_FOLDER, filename)
+    except FileNotFoundError:
+        return jsonify({'error': 'Photo not found'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 
 def get_database_connection():
     return pymysql.connect(
